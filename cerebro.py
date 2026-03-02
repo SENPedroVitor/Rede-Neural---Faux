@@ -26,7 +26,7 @@ class CerebroFaux:
         self.memoria = MemoriaSQLite()
         self.rede = None
         self._carregar_ou_criar_rede()
-        print("🧠 Cérebro Faux inicializado!")
+        print("Cerebro Faux inicializado!")
 
     def _carregar_ou_criar_rede(self):
         """Tenta carregar rede existente ou cria uma nova."""
@@ -34,7 +34,7 @@ class CerebroFaux:
         if self.rede is None:
             # Rede padrão: 10 entradas, 2 camadas ocultas, 5 saídas
             self.rede = RedeNeural([10, 16, 8, 5], funcao_ativacao="sigmoid", taxa_aprendizado=0.1)
-            print("🆕 Nova rede neural criada: [10 → 16 → 8 → 5]")
+            print("Nova rede neural criada: [10 -> 16 -> 8 -> 5]")
 
     # ── Aprender Conceito ──────────────────────────────────────────────
 
@@ -47,16 +47,16 @@ class CerebroFaux:
         """
         nid = self.memoria.criar_neuronio(conceito, categoria, descricao, exemplos)
         self.memoria._log("aprendizado", f"Aprendeu: {conceito} [{categoria}]")
-        print(f"✅ Conceito aprendido: '{conceito}' (categoria: {categoria})")
+        print(f"[OK] Conceito aprendido: '{conceito}' (categoria: {categoria})")
         return nid
 
     def conectar(self, conceito1, conceito2, tipo="relacionado"):
         """Cria conexão sináptica entre dois conceitos."""
         sid = self.memoria.criar_sinapse(conceito1, conceito2, tipo=tipo)
         if sid:
-            print(f"🔗 Sinapse criada: '{conceito1}' ↔ '{conceito2}' ({tipo})")
+            print(f"[LINK] Sinapse criada: '{conceito1}' <-> '{conceito2}' ({tipo})")
         else:
-            print(f"⚠️  Não foi possível conectar (conceitos existem?)")
+            print(f"[AVISO] Nao foi possivel conectar (conceitos existem?)")
         return sid
 
     def lembrar(self, conceito):
@@ -86,7 +86,7 @@ class CerebroFaux:
         """Busca associações de um conceito (pensamento associativo)."""
         conexoes = self.memoria.buscar_conexoes(conceito)
         if conexoes:
-            print(f"\n🔗 Associações de '{conceito}':")
+            print(f"\n[LINK] Associacoes de '{conceito}':")
             for c in conexoes:
                 barra = "█" * int(c["peso"] * 10)
                 print(f"  → {c['conceito']}: {barra} ({c['peso']:.2f}) [{c['tipo_conexao']}]")
@@ -99,7 +99,7 @@ class CerebroFaux:
     def criar_flashcard(self, conceito, pergunta, resposta, dificuldade=1):
         """Cria um flashcard para estudo."""
         fid = self.memoria.criar_flashcard(conceito, pergunta, resposta, dificuldade)
-        print(f"📝 Flashcard criado para '{conceito}'")
+        print(f"[CARD] Flashcard criado para '{conceito}'")
         return fid
 
     def estudar(self, categoria=None, limite=10):
@@ -154,16 +154,16 @@ class CerebroFaux:
             categorias[cat].append(n)
 
         print("\n" + "=" * 60)
-        print("  🗺️  MAPA MENTAL — CÉREBRO FAUX")
+        print("  MAPA MENTAL -- CEREBRO FAUX")
         print("=" * 60)
 
         for cat, itens in categorias.items():
-            print(f"\n  📂 {cat.upper()}")
+            print(f"\n  [{cat.upper()}]")
             print(f"  {'─' * 40}")
             for n in itens:
                 confianca = n["nivel_confianca"]
                 barra = "█" * int(confianca * 20) + "░" * (20 - int(confianca * 20))
-                emoji = "🟢" if confianca > 0.7 else "🟡" if confianca > 0.3 else "🔴"
+                emoji = "[+]" if confianca > 0.7 else "[~]" if confianca > 0.3 else "[-]"
                 print(f"  {emoji} {n['conceito']:<25} [{barra}] {confianca*100:.0f}%")
                 if n["descricao"]:
                     print(f"     └─ {n['descricao'][:60]}")
@@ -171,9 +171,9 @@ class CerebroFaux:
     def salvar(self):
         """Salva o estado do cérebro."""
         self.rede.salvar("rede_neural_faux.json")
-        print("💾 Cérebro salvo!")
+        print("Cerebro salvo!")
 
     def fechar(self):
-        """Fecha conexões."""
+        """Fecha conexoes."""
         self.memoria.fechar()
-        print("👋 Cérebro desligado.")
+        print("Cerebro desligado.")

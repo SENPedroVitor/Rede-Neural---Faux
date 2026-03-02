@@ -1,67 +1,67 @@
-# 🧠 Rede Neural Faux — Cérebro Digital
+# Rede Neural Faux -- Cerebro Digital
 
-> *"Eu não imito um cérebro. Eu sou um."* — Faux
+> *"Eu nao imito um cerebro. Eu sou um."* -- Faux
 
-Sistema de rede neural + memória SQLite que simula o funcionamento do cérebro humano,
+Sistema de rede neural + memoria SQLite que simula o funcionamento do cerebro humano,
 especializado em estudos de **Bancos de Dados** e **SQLite**.
 
 ---
 
-## 🏗️ Arquitetura do Projeto
+## Arquitetura do Projeto
 
 ```
 Rede-Neural---Faux/
-├── main.py              # 🚀 Interface interativa (execute este!)
-├── cerebro.py           # 🧠 Cérebro digital — integra tudo
-├── rede_neural.py       # 🤖 Rede neural feedforward (do zero!)
-├── memoria_sqlite.py    # 💾 Memória persistente com SQLite
-├── estudos_db.py        # 📚 Base de conhecimento SQL/SQLite
-├── BASE.py              # 🔗 Integração com Obsidian (ChromaDB)
-├── cerebro_faux.db      # 📦 Banco de dados (gerado automaticamente)
-└── rede_neural_faux.json # 📦 Pesos da rede neural (gerado automaticamente)
+├── main.py              # Interface interativa (execute este!)
+├── cerebro.py           # Cerebro digital -- integra tudo
+├── rede_neural.py       # Rede neural feedforward (do zero!)
+├── memoria_sqlite.py    # Memoria persistente com SQLite
+├── estudos_db.py        # Base de conhecimento SQL/SQLite
+├── BASE.py              # Integracao com Obsidian (ChromaDB)
+├── cerebro_faux.db      # Banco de dados (gerado automaticamente)
+└── rede_neural_faux.json # Pesos da rede neural (gerado automaticamente)
 ```
 
-## 🧩 Componentes (Analogia com o Cérebro)
+## Componentes (Analogia com o Cerebro)
 
-| Componente | Analogia Cerebral | Descrição |
+| Componente | Analogia Cerebral | Descricao |
 |---|---|---|
-| `rede_neural.py` | **Córtex cerebral** | Rede neural feedforward pura (sem frameworks), com backpropagation |
-| `memoria_sqlite.py` | **Hipocampo** | Memória de longo prazo — armazena conceitos, conexões e histórico |
-| `cerebro.py` | **Cérebro completo** | Integra rede neural + memória, como o sistema nervoso central |
+| `rede_neural.py` | **Cortex cerebral** | Rede neural feedforward pura (sem frameworks), com backpropagation |
+| `memoria_sqlite.py` | **Hipocampo** | Memoria de longo prazo -- armazena conceitos, conexoes e historico |
+| `cerebro.py` | **Cerebro completo** | Integra rede neural + memoria, como o sistema nervoso central |
 | `estudos_db.py` | **Livro-texto** | 40+ conceitos de SQL/SQLite com flashcards prontos |
-| `main.py` | **Consciência** | Interface interativa para estudar e aprender |
+| `main.py` | **Consciencia** | Interface interativa para estudar e aprender |
 
-## 🚀 Como Usar
+## Como Usar
 
-### 1. Executar (nenhuma dependência pesada!)
+### 1. Executar (nenhuma dependencia pesada!)
 ```bash
 # O projeto usa apenas a stdlib do Python (sqlite3, math, json, random)
-# Nenhuma instalação adicional necessária!
+# Nenhuma instalacao adicional necessaria!
 python main.py
 ```
 
 ### 2. Menu Principal
 ```
-1 │ 📚 Estudar (Flashcards)       — Modo estudo com revisão espaçada
-2 │ 🔍 Buscar Conceito            — Busca na memória neural
-3 │ 🗺️  Mapa Mental                — Visualiza todos os conceitos
-4 │ 🧪 Testar Rede Neural         — Demo: XOR + Classificador SQL
-5 │ ➕ Adicionar Conhecimento      — Ensine novos conceitos ao cérebro
-6 │ 🔗 Ver Conexões Sinápticas    — Veja como conceitos se conectam
-7 │ 📊 Estatísticas               — Progresso e métricas de estudo
-8 │ 🔄 Recarregar Base SQL        — Recarrega os 40+ conceitos
-9 │ 💾 Salvar Cérebro             — Persiste o estado neural
-0 │ 🚪 Sair                       — Salva e encerra
+1 | Estudar (Flashcards)       -- Modo estudo com revisao espacada
+2 | Buscar Conceito            -- Busca na memoria neural
+3 | Mapa Mental                -- Visualiza todos os conceitos
+4 | Testar Rede Neural         -- Demo: XOR + Classificador SQL
+5 | Adicionar Conhecimento     -- Ensine novos conceitos ao cerebro
+6 | Ver Conexoes Sinapticas    -- Veja como conceitos se conectam
+7 | Estatisticas               -- Progresso e metricas de estudo
+8 | Recarregar Base SQL        -- Recarrega os 40+ conceitos
+9 | Salvar Cerebro             -- Persiste o estado neural
+0 | Sair                       -- Salva e encerra
 ```
 
-## 🤖 A Rede Neural
+## A Rede Neural
 
-Implementação **do zero** (sem TensorFlow, PyTorch ou sklearn):
+Implementacao **do zero** (sem TensorFlow, PyTorch ou sklearn):
 
-- **Neurônios** com pesos, bias e funções de ativação (sigmoid, ReLU, tanh)
-- **Camadas** empilháveis com arquitetura flexível
+- **Neuronios** com pesos, bias e funcoes de ativacao (sigmoid, ReLU, tanh)
+- **Camadas** empilhaveis com arquitetura flexivel
 - **Backpropagation** para aprendizado
-- **Persistência** (salva/carrega em JSON)
+- **Persistencia** (salva/carrega em JSON)
 
 ### Teste XOR
 ```python
@@ -69,46 +69,46 @@ from rede_neural import RedeNeural
 
 rede = RedeNeural([2, 4, 1], funcao_ativacao="sigmoid", taxa_aprendizado=0.5)
 rede.treinar([[0,0],[0,1],[1,0],[1,1]], [[0],[1],[1],[0]], epocas=5000)
-print(rede.predizer([1, 0]))  # → ~0.97 (esperado: 1)
+print(rede.predizer([1, 0]))  # -> ~0.97 (esperado: 1)
 ```
 
-## 💾 O Banco SQLite
+## O Banco SQLite
 
 O `memoria_sqlite.py` cria um banco com 5 tabelas:
 
-| Tabela | Função |
+| Tabela | Funcao |
 |---|---|
-| `neuronios` | Conceitos armazenados (como neurônios biológicos) |
-| `sinapses` | Conexões entre conceitos (com peso) |
+| `neuronios` | Conceitos armazenados (como neuronios biologicos) |
+| `sinapses` | Conexoes entre conceitos (com peso) |
 | `flashcards` | Perguntas e respostas para estudo |
-| `sessoes_estudo` | Histórico de sessões de estudo |
-| `log_neural` | Log de todas as atividades do cérebro |
+| `sessoes_estudo` | Historico de sessoes de estudo |
+| `log_neural` | Log de todas as atividades do cerebro |
 
-## 📚 Conteúdo de Estudos
+## Conteudo de Estudos
 
 A base vem com **40+ conceitos** organizados em:
 
-- **Fundamentos**: banco de dados, SGBD, modelo relacional, tabelas, chaves, índices, normalização
+- **Fundamentos**: banco de dados, SGBD, modelo relacional, tabelas, chaves, indices, normalizacao
 - **Comandos SQL**: SELECT, INSERT, UPDATE, DELETE, JOIN, GROUP BY, HAVING, subquery
-- **SQLite**: conexão Python, cursor, commit, fetchall, parâmetros, tipos, transações
-- **Avançado**: ACID, SQL Injection, ORM, views, triggers, EXPLAIN QUERY PLAN
+- **SQLite**: conexao Python, cursor, commit, fetchall, parametros, tipos, transacoes
+- **Avancado**: ACID, SQL Injection, ORM, views, triggers, EXPLAIN QUERY PLAN
 
-Cada conceito tem **conexões sinápticas** com outros conceitos (50+ conexões)
-e **28+ flashcards** para teste e revisão.
+Cada conceito tem **conexoes sinapticas** com outros conceitos (50+ conexoes)
+e **28+ flashcards** para teste e revisao.
 
-## 🔧 Personalização
+## Personalizacao
 
-### Adicionar conceitos via código:
+### Adicionar conceitos via codigo:
 ```python
 from cerebro import CerebroFaux
 
 cerebro = CerebroFaux()
-cerebro.aprender("nosql", "avancado", "Bancos não-relacionais", "MongoDB, Redis, Cassandra")
-cerebro.conectar("nosql", "banco de dados", "é_tipo_de")
-cerebro.criar_flashcard("nosql", "O que é NoSQL?", "Bancos que não usam SQL tradicional...", 2)
+cerebro.aprender("nosql", "avancado", "Bancos nao-relacionais", "MongoDB, Redis, Cassandra")
+cerebro.conectar("nosql", "banco de dados", "e_tipo_de")
+cerebro.criar_flashcard("nosql", "O que e NoSQL?", "Bancos que nao usam SQL tradicional...", 2)
 ```
 
-### Testar a memória SQLite diretamente:
+### Testar a memoria SQLite diretamente:
 ```python
 from memoria_sqlite import MemoriaSQLite
 
@@ -120,4 +120,4 @@ print(mem.buscar_conexoes("sqlite"))
 
 ---
 
-**Feito com 🧠 por Pedro — Rede Neural Faux**
+**Feito por Pedro -- Rede Neural Faux**

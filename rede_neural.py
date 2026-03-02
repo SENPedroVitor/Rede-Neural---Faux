@@ -250,7 +250,7 @@ class RedeNeural:
         
         with open(caminho, 'w', encoding='utf-8') as f:
             json.dump(estado, f, indent=2, ensure_ascii=False)
-        print(f"💾 Rede neural salva em: {caminho}")
+        print(f"Rede neural salva em: {caminho}")
 
     @classmethod
     def carregar(cls, caminho="rede_neural_faux.json"):
@@ -270,7 +270,7 @@ class RedeNeural:
                 rede.camadas[i].neuronios[j].bias = n_data["bias"]
                 rede.camadas[i].neuronios[j].funcao_ativacao = n_data["funcao_ativacao"]
         
-        print(f"🧠 Rede neural carregada! ({rede.epocas_treinadas} épocas treinadas)")
+        print(f"Rede neural carregada! ({rede.epocas_treinadas} epocas treinadas)")
         return rede
 
     def info(self):
@@ -294,11 +294,11 @@ class RedeNeural:
 
 if __name__ == "__main__":
     print("=" * 50)
-    print("🧪 Testando Rede Neural Faux")
+    print("Testando Rede Neural Faux")
     print("=" * 50)
 
     # Teste clássico: aprender XOR (problema não-linear)
-    print("\n📡 Treinando para aprender XOR...")
+    print("\nTreinando para aprender XOR...")
     rede = RedeNeural([2, 4, 1], funcao_ativacao="sigmoid", taxa_aprendizado=0.5)
 
     entradas = [[0, 0], [0, 1], [1, 0], [1, 1]]
@@ -306,10 +306,10 @@ if __name__ == "__main__":
 
     rede.treinar(entradas, saidas, epocas=5000, verbose=True)
 
-    print("\n📊 Resultados:")
+    print("\nResultados:")
     for e, s in zip(entradas, saidas):
         pred = rede.predizer(e)
-        print(f"  Input: {e} → Predição: {pred[0]:.4f} (Esperado: {s[0]})")
+        print(f"  Input: {e} -> Predicao: {pred[0]:.4f} (Esperado: {s[0]})")
 
-    print(f"\n📈 Info: {rede.info()}")
+    print(f"\nInfo: {rede.info()}")
     rede.salvar()

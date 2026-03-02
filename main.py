@@ -19,18 +19,18 @@ def limpar_tela():
 
 
 def pausar():
-    input("\n⏎  Pressione ENTER para continuar...")
+    input("\n  Pressione ENTER para continuar...")
 
 
 def banner():
     print("""
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║     🧠  REDE NEURAL FAUX — CÉREBRO DIGITAL                  ║
-║     ══════════════════════════════════                        ║
+║     REDE NEURAL FAUX -- CEREBRO DIGITAL                      ║
+║     ======================================                    ║
 ║     Sistema de Estudos: Bancos de Dados & SQLite             ║
 ║                                                              ║
-║     "Eu não imito um cérebro. Eu sou um." — Faux             ║
+║     "Eu nao imito um cerebro. Eu sou um." -- Faux            ║
 ║                                                              ║
 ╚══════════════════════════════════════════════════════════════╝
     """)
@@ -41,16 +41,16 @@ def menu_principal():
 ┌──────────────────────────────────────┐
 │         MENU PRINCIPAL               │
 ├──────────────────────────────────────┤
-│  1 │ 📚 Estudar (Flashcards)        │
-│  2 │ 🔍 Buscar Conceito             │
-│  3 │ 🗺️  Mapa Mental                │
-│  4 │ 🧪 Testar Rede Neural          │
-│  5 │ ➕ Adicionar Conhecimento       │
-│  6 │ 🔗 Ver Conexões Sinápticas     │
-│  7 │ 📊 Estatísticas                │
-│  8 │ 🔄 Recarregar Base SQL         │
-│  9 │ 💾 Salvar Cérebro              │
-│  0 │ 🚪 Sair                        │
+│  1 | Estudar (Flashcards)            │
+│  2 | Buscar Conceito                 │
+│  3 | Mapa Mental                     │
+│  4 | Testar Rede Neural              │
+│  5 | Adicionar Conhecimento          │
+│  6 | Ver Conexoes Sinapticas         │
+│  7 | Estatisticas                    │
+│  8 | Recarregar Base SQL             │
+│  9 | Salvar Cerebro                  │
+│  0 | Sair                            │
 └──────────────────────────────────────┘
     """)
     return input("  Escolha → ").strip()
@@ -60,7 +60,7 @@ def menu_principal():
 
 def modo_estudo(cerebro):
     limpar_tela()
-    print("\n📚 MODO ESTUDO — Flashcards Neurais")
+    print("\nMODO ESTUDO -- Flashcards Neurais")
     print("=" * 50)
     
     print("\nCategorias disponíveis:")
@@ -81,7 +81,7 @@ def modo_estudo(cerebro):
     flashcards = cerebro.estudar(categoria=categoria, limite=20)
     
     if not flashcards:
-        print("\n⚠️  Nenhum flashcard encontrado! Use 'Recarregar Base SQL' primeiro.")
+        print("\n[AVISO] Nenhum flashcard encontrado! Use 'Recarregar Base SQL' primeiro.")
         pausar()
         return
 
@@ -93,23 +93,23 @@ def modo_estudo(cerebro):
     acertos = 0
     total = 0
 
-    print(f"\n🎯 {len(flashcards)} flashcards para estudar. Digite 'sair' para parar.\n")
+    print(f"\n{len(flashcards)} flashcards para estudar. Digite 'sair' para parar.\n")
     print("─" * 50)
 
     for i, fc in enumerate(flashcards, 1):
         total += 1
-        dif_str = "⭐" * (fc.get("dificuldade", 1) or 1)
+        dif_str = "*" * (fc.get("dificuldade", 1) or 1)
         cat_str = fc.get("categoria", "?")
 
-        print(f"\n  📌 Flashcard {i}/{len(flashcards)} [{cat_str}] {dif_str}")
-        print(f"\n  ❓ {fc['pergunta']}")
+        print(f"\n  Flashcard {i}/{len(flashcards)} [{cat_str}] {dif_str}")
+        print(f"\n  [?] {fc['pergunta']}")
         
         resp = input("\n  Sua resposta (ou ENTER para ver): ").strip()
         
         if resp.lower() == "sair":
             break
 
-        print(f"\n  ✅ RESPOSTA CORRETA:")
+        print(f"\n  RESPOSTA CORRETA:")
         print(f"  ─────────────────────")
         for linha in fc["resposta"].split("\n"):
             print(f"  {linha}")
@@ -123,9 +123,9 @@ def modo_estudo(cerebro):
         acertou = avaliacao in ["s", "sim"]
         if acertou:
             acertos += 1
-            print("  🟢 +1 Acerto! Neurônio reforçado.")
+            print("  [+] +1 Acerto! Neuronio reforcado.")
         else:
-            print("  🔴 Erro. Revise esse conceito!")
+            print("  [-] Erro. Revise esse conceito!")
         
         cerebro.responder_flashcard(fc["id"], acertou)
         print("─" * 50)
@@ -134,7 +134,7 @@ def modo_estudo(cerebro):
     if total > 0:
         pontuacao = cerebro.memoria.finalizar_sessao(sessao_id, total, acertos)
         print(f"\n{'═' * 50}")
-        print(f"  📊 RESULTADO DA SESSÃO")
+        print(f"  RESULTADO DA SESSAO")
         print(f"  ─────────────────────")
         print(f"  Perguntas: {total}")
         print(f"  Acertos:   {acertos}")
@@ -142,13 +142,13 @@ def modo_estudo(cerebro):
         print(f"  Pontuação: {pontuacao:.1f}%")
         
         if pontuacao >= 80:
-            print("  🏆 Excelente! Seu cérebro está afiado!")
+            print("  Excelente! Seu cerebro esta afiado!")
         elif pontuacao >= 60:
-            print("  👍 Bom! Continue praticando!")
+            print("  Bom! Continue praticando!")
         elif pontuacao >= 40:
-            print("  📖 Precisa revisar mais. Não desista!")
+            print("  Precisa revisar mais. Nao desista!")
         else:
-            print("  💪 Estude mais e tente novamente!")
+            print("  Estude mais e tente novamente!")
         print(f"{'═' * 50}")
 
     pausar()
@@ -158,7 +158,7 @@ def modo_estudo(cerebro):
 
 def buscar_conceito(cerebro):
     limpar_tela()
-    print("\n🔍 BUSCAR CONCEITO")
+    print("\nBUSCAR CONCEITO")
     print("=" * 50)
     
     termo = input("\n  O que você quer lembrar? → ").strip()
@@ -168,23 +168,23 @@ def buscar_conceito(cerebro):
     resultado = cerebro.lembrar(termo)
     
     if resultado:
-        print(f"\n  🧠 ENCONTRADO!")
+        print(f"\n  ENCONTRADO!")
         print(f"  ─────────────────────")
         print(f"  Conceito:   {resultado['conceito']}")
         print(f"  Categoria:  {resultado['categoria']}")
-        print(f"  Confiança:  {resultado['confianca']}")
+        print(f"  Confianca:  {resultado['confianca']}")
         print(f"  Acessos:    {resultado['vezes_acessado']}")
-        print(f"\n  📝 Descrição:")
+        print(f"\n  Descricao:")
         print(f"  {resultado['descricao']}")
-        print(f"\n  💡 Exemplos:")
+        print(f"\n  Exemplos:")
         print(f"  {resultado['exemplos']}")
         
         if resultado['conexoes']:
-            print(f"\n  🔗 Conexões:")
+            print(f"\n  Conexoes:")
             for c in resultado['conexoes']:
                 print(f"    → {c}")
     else:
-        print(f"\n  ❌ Conceito '{termo}' não encontrado na memória.")
+        print(f"\n  Conceito '{termo}' nao encontrado na memoria.")
         print("  Dica: tente termos como 'select', 'sqlite', 'join', 'chave primária'")
 
     pausar()
@@ -194,7 +194,7 @@ def buscar_conceito(cerebro):
 
 def testar_rede_neural(cerebro):
     limpar_tela()
-    print("\n🧪 TESTE DA REDE NEURAL")
+    print("\nTESTE DA REDE NEURAL")
     print("=" * 50)
     
     print("\n  Demonstração: Treinando a rede para aprender XOR")
@@ -211,15 +211,15 @@ def testar_rede_neural(cerebro):
     print("  Treinando...")
     rede_xor.treinar(entradas, saidas, epocas=5000, verbose=True)
 
-    print("\n  📊 Resultados após treinamento:")
+    print("\n  Resultados apos treinamento:")
     print("  ─────────────────────────────")
     for e, s in zip(entradas, saidas):
         pred = rede_xor.predizer(e)
-        correto = "✅" if abs(pred[0] - s[0]) < 0.3 else "❌"
-        print(f"  {correto} Input: {e} → Saída: {pred[0]:.4f} (esperado: {s[0]})")
+        correto = "[OK]" if abs(pred[0] - s[0]) < 0.3 else "[X]"
+        print(f"  {correto} Input: {e} -> Saida: {pred[0]:.4f} (esperado: {s[0]})")
 
     info = rede_xor.info()
-    print(f"\n  📈 Arquitetura: {info['arquitetura']}")
+    print(f"\n  Arquitetura: {info['arquitetura']}")
     print(f"  Total neurônios: {info['total_neuronios']}")
     print(f"  Total parâmetros: {info['total_parametros']}")
     print(f"  Épocas treinadas: {info['epocas_treinadas']}")
@@ -265,7 +265,7 @@ def testar_rede_neural(cerebro):
         ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1], "CREATE TABLE"),
     ]
 
-    print("\n  📊 Classificação de comandos SQL:")
+    print("\n  Classificacao de comandos SQL:")
     print("  ─────────────────────────────────")
     for inp, desc in testes:
         pred = rede_sql.predizer(inp)
@@ -276,7 +276,7 @@ def testar_rede_neural(cerebro):
     # Salva a rede SQL como o cérebro principal
     cerebro.rede = rede_sql
     cerebro.salvar()
-    print("\n  💾 Rede neural SQL salva como cérebro principal!")
+    print("\n  Rede neural SQL salva como cerebro principal!")
 
     pausar()
 
@@ -285,7 +285,7 @@ def testar_rede_neural(cerebro):
 
 def adicionar_conhecimento(cerebro):
     limpar_tela()
-    print("\n➕ ADICIONAR CONHECIMENTO")
+    print("\n[+] ADICIONAR CONHECIMENTO")
     print("=" * 50)
     
     print("\n  O que deseja adicionar?")
@@ -324,7 +324,7 @@ def adicionar_conhecimento(cerebro):
 
 def ver_conexoes(cerebro):
     limpar_tela()
-    print("\n🔗 CONEXÕES SINÁPTICAS")
+    print("\nCONEXOES SINAPTICAS")
     print("=" * 50)
     
     termo = input("\n  Conceito para ver conexões → ").strip()
@@ -337,12 +337,12 @@ def ver_conexoes(cerebro):
 
 def mostrar_estatisticas(cerebro):
     limpar_tela()
-    print("\n📊 ESTATÍSTICAS DO CÉREBRO")
+    print("\nESTATISTICAS DO CEREBRO")
     print("=" * 50)
     
     status = cerebro.status()
     
-    print(f"\n  🧠 MEMÓRIA")
+    print(f"\n  MEMORIA")
     print(f"  ─────────────────────")
     print(f"  Neurônios (conceitos):  {status['memoria']['neuronios']}")
     print(f"  Sinapses (conexões):    {status['memoria']['sinapses']}")
@@ -350,7 +350,7 @@ def mostrar_estatisticas(cerebro):
     print(f"  Sessões de estudo:      {status['memoria']['sessoes']}")
     print(f"  Logs de atividade:      {status['memoria']['logs']}")
 
-    print(f"\n  🤖 REDE NEURAL")
+    print(f"\n  REDE NEURAL")
     print(f"  ─────────────────────")
     ri = status['rede_neural']
     print(f"  Arquitetura:            {ri['arquitetura']}")
@@ -359,7 +359,7 @@ def mostrar_estatisticas(cerebro):
     print(f"  Total parâmetros:       {ri['total_parametros']}")
     print(f"  Épocas treinadas:       {ri['epocas_treinadas']}")
 
-    print(f"\n  📚 ESTUDOS")
+    print(f"\n  ESTUDOS")
     print(f"  ─────────────────────")
     es = status['estudos']
     print(f"  Total sessões:          {es['total_sessoes']}")
@@ -382,12 +382,12 @@ def main():
     # Verifica se a base já tem conceitos
     info = cerebro.memoria.info_banco()
     if info["neuronios"] == 0:
-        print("\n  🆕 Primeira execução detectada!")
+        print("\n  Primeira execucao detectada!")
         print("  Carregando base de conhecimento SQL...")
         carregar_conhecimento_sql(cerebro)
         cerebro.salvar()
 
-    print(f"\n  ✅ Cérebro ativo com {info['neuronios']} conceitos e {info['flashcards']} flashcards!")
+    print(f"\n  [OK] Cerebro ativo com {info['neuronios']} conceitos e {info['flashcards']} flashcards!")
     pausar()
 
     while True:
@@ -417,21 +417,21 @@ def main():
             mostrar_estatisticas(cerebro)
         elif escolha == "8":
             limpar_tela()
-            print("\n  🔄 Recarregando base de conhecimento SQL...")
+            print("\n  Recarregando base de conhecimento SQL...")
             carregar_conhecimento_sql(cerebro)
             cerebro.salvar()
             pausar()
         elif escolha == "9":
             cerebro.salvar()
-            print("  💾 Salvo!")
+            print("  Salvo!")
             pausar()
         elif escolha == "0":
             cerebro.salvar()
             cerebro.fechar()
-            print("\n  👋 Até a próxima sessão de estudos!")
+            print("\n  Ate a proxima sessao de estudos!")
             break
         else:
-            print("  ⚠️  Opção inválida!")
+            print("  Opcao invalida!")
             time.sleep(1)
 
 

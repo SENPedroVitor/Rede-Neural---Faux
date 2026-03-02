@@ -11,7 +11,7 @@ from cerebro import CerebroFaux
 def carregar_conhecimento_sql(cerebro: CerebroFaux):
     """Carrega o conhecimento fundamental sobre SQL e Bancos de Dados."""
 
-    print("\n📚 Carregando base de conhecimento: SQL & Bancos de Dados...")
+    print("\nCarregando base de conhecimento: SQL & Bancos de Dados...")
     print("=" * 60)
 
     # ════════════════════════════════════════════════════════════════
@@ -307,13 +307,13 @@ def carregar_conhecimento_sql(cerebro: CerebroFaux):
             cerebro.aprender(**c)
             total += 1
 
-    print(f"\n✅ {total} conceitos carregados no cérebro!")
+    print(f"\n[OK] {total} conceitos carregados no cerebro!")
 
     # ════════════════════════════════════════════════════════════════
     # 5. CRIAR SINAPSES (conexões entre conceitos)
     # ════════════════════════════════════════════════════════════════
 
-    print("\n🔗 Criando conexões sinápticas...")
+    print("\n[LINK] Criando conexoes sinapticas...")
 
     conexoes = [
         # Fundamentos
@@ -373,13 +373,13 @@ def carregar_conhecimento_sql(cerebro: CerebroFaux):
     for origem, destino, tipo in conexoes:
         cerebro.conectar(origem, destino, tipo)
 
-    print(f"✅ {len(conexoes)} conexões sinápticas criadas!")
+    print(f"[OK] {len(conexoes)} conexoes sinapticas criadas!")
 
     # ════════════════════════════════════════════════════════════════
     # 6. CRIAR FLASHCARDS PARA ESTUDO
     # ════════════════════════════════════════════════════════════════
 
-    print("\n📝 Criando flashcards de estudo...")
+    print("\n[CARD] Criando flashcards de estudo...")
 
     flashcards = [
         # Fundamentos
@@ -474,9 +474,9 @@ def carregar_conhecimento_sql(cerebro: CerebroFaux):
     for conceito, pergunta, resposta, dificuldade in flashcards:
         cerebro.criar_flashcard(conceito, pergunta, resposta, dificuldade)
 
-    print(f"✅ {len(flashcards)} flashcards criados!")
+    print(f"[OK] {len(flashcards)} flashcards criados!")
     print("\n" + "=" * 60)
-    print("🧠 Base de conhecimento carregada com sucesso!")
+    print("Base de conhecimento carregada com sucesso!")
     print("=" * 60)
 
 

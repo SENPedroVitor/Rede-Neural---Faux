@@ -30,9 +30,9 @@ def processar_arquivo(caminho):
                     metadatas=[{"fonte": nome_id}],
                     ids=[nome_id]
                 )
-                print(f"🧠 Memória Sincronizada: {nome_id}")
+                print(f"[OK] Memoria Sincronizada: {nome_id}")
     except Exception as e:
-        print(f"❌ Erro ao processar: {e}")
+        print(f"[ERRO] Erro ao processar: {e}")
 
 # Monitor de alterações em tempo real
 class ObsidianHandler(FileSystemEventHandler):
@@ -43,7 +43,7 @@ class ObsidianHandler(FileSystemEventHandler):
 
 if __name__ == "__main__":
     # Escaneia tudo na primeira vez
-    print("🔄 Sincronizando seu Obsidian com seu cérebro digital...")
+    print("[SYNC] Sincronizando seu Obsidian com seu cerebro digital...")
     for root, _, files in os.walk(PATH_OBSIDIAN):
         for f in files: processar_arquivo(os.path.join(root, f))
     
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     observer = Observer()
     observer.schedule(ObsidianHandler(), PATH_OBSIDIAN, recursive=True)
     observer.start()
-    print(f"🚀 Sistema Ativo! Monitorando: {PATH_OBSIDIAN}")
+    print(f"[ATIVO] Sistema Ativo! Monitorando: {PATH_OBSIDIAN}")
     
     try:
         while True: time.sleep(1)
