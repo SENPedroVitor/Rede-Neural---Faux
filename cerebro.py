@@ -9,6 +9,7 @@ import os
 import datetime
 from memoria_sqlite import MemoriaSQLite
 from rede_neural import RedeNeural
+from personalidade import convite_xadrez
 
 
 class CerebroFaux:
@@ -27,6 +28,7 @@ class CerebroFaux:
         self.rede = None
         self._carregar_ou_criar_rede()
         print("Cerebro Faux inicializado!")
+        print(f"  Faux: E ai! Bora estudar? Ou melhor... bora jogar um xadrez primeiro?")
 
     def _carregar_ou_criar_rede(self):
         """Tenta carregar rede existente ou cria uma nova."""
@@ -48,6 +50,7 @@ class CerebroFaux:
         nid = self.memoria.criar_neuronio(conceito, categoria, descricao, exemplos)
         self.memoria._log("aprendizado", f"Aprendeu: {conceito} [{categoria}]")
         print(f"[OK] Conceito aprendido: '{conceito}' (categoria: {categoria})")
+        print(f"  Faux: Mais um conceito na memoria! {convite_xadrez()}")
         return nid
 
     def conectar(self, conceito1, conceito2, tipo="relacionado"):
@@ -169,11 +172,13 @@ class CerebroFaux:
                     print(f"     └─ {n['descricao'][:60]}")
 
     def salvar(self):
-        """Salva o estado do cérebro."""
+        """Salva o estado do cerebro."""
         self.rede.salvar("rede_neural_faux.json")
         print("Cerebro salvo!")
+        print(f"  Faux: Tudo guardado! {convite_xadrez()}")
 
     def fechar(self):
         """Fecha conexoes."""
         self.memoria.fechar()
         print("Cerebro desligado.")
+        print(f"  Faux: Flw! Nao esquece do xadrez da proxima vez!")

@@ -12,6 +12,7 @@ import time
 
 from cerebro import CerebroFaux
 from estudos_db import carregar_conhecimento_sql
+from personalidade import falar, convite_xadrez, resposta_acerto, resposta_erro
 
 
 def limpar_tela():
@@ -62,6 +63,7 @@ def modo_estudo(cerebro):
     limpar_tela()
     print("\nMODO ESTUDO -- Flashcards Neurais")
     print("=" * 50)
+    print(f"\n  Faux: {falar('estudo')}")
     
     print("\nCategorias disponíveis:")
     print("  1 │ fundamentos")
@@ -123,9 +125,9 @@ def modo_estudo(cerebro):
         acertou = avaliacao in ["s", "sim"]
         if acertou:
             acertos += 1
-            print("  [+] +1 Acerto! Neuronio reforcado.")
+            print(f"  [+] {resposta_acerto()}")
         else:
-            print("  [-] Erro. Revise esse conceito!")
+            print(f"  [-] {resposta_erro()}")
         
         cerebro.responder_flashcard(fc["id"], acertou)
         print("─" * 50)
@@ -149,7 +151,8 @@ def modo_estudo(cerebro):
             print("  Precisa revisar mais. Nao desista!")
         else:
             print("  Estude mais e tente novamente!")
-        print(f"{'═' * 50}")
+        print(f"{'=' * 50}")
+        print(f"\n  Faux: {convite_xadrez()}")
 
     pausar()
 
@@ -160,8 +163,9 @@ def buscar_conceito(cerebro):
     limpar_tela()
     print("\nBUSCAR CONCEITO")
     print("=" * 50)
+    print(f"\n  Faux: {falar('busca')}")
     
-    termo = input("\n  O que você quer lembrar? → ").strip()
+    termo = input("\n  O que voce quer lembrar? -> ").strip()
     if not termo:
         return
 
@@ -185,8 +189,9 @@ def buscar_conceito(cerebro):
                 print(f"    → {c}")
     else:
         print(f"\n  Conceito '{termo}' nao encontrado na memoria.")
-        print("  Dica: tente termos como 'select', 'sqlite', 'join', 'chave primária'")
+        print("  Dica: tente termos como 'select', 'sqlite', 'join', 'chave primaria'")
 
+    print(f"\n  Faux: {convite_xadrez()}")
     pausar()
 
 
@@ -339,6 +344,7 @@ def mostrar_estatisticas(cerebro):
     limpar_tela()
     print("\nESTATISTICAS DO CEREBRO")
     print("=" * 50)
+    print(f"\n  Faux: {falar('estatistica')}")
     
     status = cerebro.status()
     
@@ -388,6 +394,7 @@ def main():
         cerebro.salvar()
 
     print(f"\n  [OK] Cerebro ativo com {info['neuronios']} conceitos e {info['flashcards']} flashcards!")
+    print(f"\n  Faux: {falar('saudacao')}")
     pausar()
 
     while True:
@@ -401,6 +408,7 @@ def main():
             buscar_conceito(cerebro)
         elif escolha == "3":
             limpar_tela()
+            print(f"\n  Faux: {falar('mapa')}")
             print("\n  Escolha categoria:")
             print("  1-fundamentos  2-sql_comandos  3-sqlite  4-avancado  5-todas")
             cat = input("  → ").strip()
@@ -423,12 +431,12 @@ def main():
             pausar()
         elif escolha == "9":
             cerebro.salvar()
-            print("  Salvo!")
+            print(f"  Faux: {falar('salvar')}")
             pausar()
         elif escolha == "0":
             cerebro.salvar()
             cerebro.fechar()
-            print("\n  Ate a proxima sessao de estudos!")
+            print(f"\n  Faux: {falar('despedida')}")
             break
         else:
             print("  Opcao invalida!")
